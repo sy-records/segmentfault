@@ -40,6 +40,14 @@
 
 以及是否使用[PushBear](http://pushbear.ftqq.com/admin/#/api)进行一对多推送，使用需要补全`key`
 
+#### crontab定时
+
+半小时一次
+
+```bash
+*/30 * * * * php /www/wwwroot/tag.php >> /www/wwwroot/sf.log
+```
+
 ### 效果截图
 
 <img src="https://ws1.sinaimg.cn/large/0072Lfvtly1g0lxmahzklj30xa1as0zp.jpg" alt="WX20190228-102943@2x.png" title="WX20190228-102943@2x.png" height='500px' />
