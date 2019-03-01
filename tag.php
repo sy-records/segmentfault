@@ -35,16 +35,16 @@ for ($i = 0; $i < $url_hrefs->length; $i++) {
 $json = json_encode($data);
 
 // 判断文件是否存在
-if (file_exists("./sf.json")) {
+if (file_exists("sf.json")) {
     // 存在
-    $old = file_get_contents('./sf.json');
+    $old = file_get_contents('sf.json');
     // 文件不同
     if ($old != $json) {
         // 替换掉 写新文件
-        file_put_contents('./sf.json', $json);
+        file_put_contents('sf.json', $json);
         $oldInfo = json_decode($old, true);
         // 去重
-        $data = array_unique(array_merge($data, $oldInfo));
+        $data = array_unique(array_merge($oldInfo, $data));
     } else {
         // 相同就不发了
         echo date('Y-m-d H:i:s', time()). "内容相同".PHP_EOL;
@@ -52,7 +52,7 @@ if (file_exists("./sf.json")) {
     }
 } else {
     // 不存在 写文件
-    file_put_contents('./sf.json', $json);
+    file_put_contents('sf.json', $json);
 }
 
 $str = "";
