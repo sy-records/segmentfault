@@ -44,7 +44,7 @@ if (file_exists("sf.json")) {
         file_put_contents('sf.json', $json);
         $oldInfo = json_decode($old, true);
         // 获取差值
-        $data = get_diff_array_by_title($oldInfo, $data);
+        $data = get_diff_array_by_title($data, $oldInfo);
     } else {
         // 相同就不发了
         echo date('Y-m-d H:i:s', time()). "内容相同".PHP_EOL;
