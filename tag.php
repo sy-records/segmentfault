@@ -43,8 +43,8 @@ if (file_exists("sf.json")) {
         // 替换掉 写新文件
         file_put_contents('sf.json', $json);
         $oldInfo = json_decode($old, true);
-        // 去重
-        $data = array_unique(array_merge($oldInfo, $data));
+        // 获取差值
+        $data = get_diff_array_by_title($oldInfo, $data);
     } else {
         // 相同就不发了
         echo date('Y-m-d H:i:s', time()). "内容相同".PHP_EOL;
@@ -64,6 +64,13 @@ foreach ($data as $key => $item) {
 // 推送
 if (!empty($key)) {
     echo sendByBear('***标签动态', $str);
+}
+
+function get_diff_array_by_title($arr1,$arr2,$pk='title'){
+    $res = [];
+    foreach($arr2 as $item) $tmpArr[$item[$pk]] = $item;
+    foreach($arr1 as $v) if(! isset($tmpArr[$v[$pk]])) $res[] = $v;
+    return $res;
 }
 
 function sendByBear($text, $desp = '', $key = '')
