@@ -36,7 +36,7 @@
 
 我这里只采集第一页的数据用来提醒，可自行扩展
 
-补全`tag.php`中的相关信息，`URL`和`XPath`节点
+补全`tag.php`中的相关信息，`URL`和`XPath`节点，`json`文件路径
 
 以及是否使用[PushBear](http://pushbear.ftqq.com/admin/#/api)进行一对多推送，使用需要补全`key`
 
@@ -45,7 +45,7 @@
 半小时一次
 
 ```bash
-*/30 * * * * php /www/wwwroot/tag.php >> /www/wwwroot/sf.log
+*/30 * * * * php /www/wwwroot/tag.php >> /tmp/sf.log
 ```
 
 ### 效果截图
