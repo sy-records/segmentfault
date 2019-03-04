@@ -3,6 +3,7 @@ $url = ''; // 需要采集的URL
 $key = ''; // PushBear的SendKey
 $title_xpath = ''; // 标题的XPath节点
 $url_xpath = ''; // 对应链接的XPath节点
+$json_path = "/tmp/sf.json";
 
 $html = file_get_contents($url);
 
@@ -35,13 +36,13 @@ for ($i = 0; $i < $url_hrefs->length; $i++) {
 $json = json_encode($data);
 
 // 判断文件是否存在
-if (file_exists("sf.json")) {
+if (file_exists($json_path)) {
     // 存在
-    $old = file_get_contents('sf.json');
+    $old = file_get_contents($json_path);
     // 文件不同
     if ($old != $json) {
         // 替换掉 写新文件
-        file_put_contents('sf.json', $json);
+        file_put_contents($json_path, $json);
         $oldInfo = json_decode($old, true);
         // 获取差值
         $data = get_diff_array_by_title($data, $oldInfo);
@@ -52,7 +53,7 @@ if (file_exists("sf.json")) {
     }
 } else {
     // 不存在 写文件
-    file_put_contents('sf.json', $json);
+    file_put_contents($json_path, $json);
 }
 
 $str = "";
