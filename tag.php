@@ -45,7 +45,7 @@ if (file_exists($json_path)) {
         file_put_contents($json_path, $json);
         $oldInfo = json_decode($old, true);
         // 获取差值
-        $data = get_diff_array_by_title($data, $oldInfo);
+        $data = getDiffArrayByTitle($data, $oldInfo);
     } else {
         // 相同就不发了
         echo date('Y-m-d H:i:s', time()). "内容相同".PHP_EOL;
@@ -67,7 +67,7 @@ if (!empty($key)) {
     echo sendByBear('***标签动态', $str);
 }
 
-function get_diff_array_by_title($arr1,$arr2,$pk='title'){
+function getDiffArrayByTitle($arr1,$arr2,$pk='title'){
     $res = [];
     foreach($arr2 as $item) $tmpArr[$item[$pk]] = $item;
     foreach($arr1 as $v) if(! isset($tmpArr[$v[$pk]])) $res[] = $v;
